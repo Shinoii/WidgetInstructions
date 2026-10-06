@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Донат-гол — Widget Instruction</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="donation-goal">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Widget Instruction</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="donation-goal.html" class="active">Донат-гол</a>
+      <a href="follow-goal.html">Фоллоу-гол</a>
+      <a href="sub-goal.html">Саб-гол</a>
+      <a href="chat.html">Чат</a>
+      <a href="service.html">Сервис донатов</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Переключить тему">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Закрыть оглавление">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <p class="sidebar-title">Содержание</p>
+    <nav class="toc" data-flow="archive">
+      <a href="#step-1">1. Создание оверлея</a>
+      <a href="#step-2">2. Custom Widget</a>
+      <a href="#step-3">3. Редактор кода</a>
+      <a href="#step-4">4. Вставка кода</a>
+      <a href="#step-5">5. Подключение сервиса</a>
+      <a href="#step-6">6. Параметры цели</a>
+      <a href="#step-7">7. Размер и позиция</a>
+      <a href="#step-8">8. Подключение к OBS</a>
+      <a href="#step-9">9. Проверка работы</a>
+    </nav>
+    <nav class="toc" data-flow="link" hidden>
+      <a href="#link-step-1">1. Откройте ссылку</a>
+      <a href="#link-step-2">2. Подтвердите установку</a>
+      <a href="#link-step-3">3. Подключение сервиса</a>
+      <a href="#link-step-4">4. Параметры цели</a>
+      <a href="#link-step-5">5. Размер и позиция</a>
+      <a href="#link-step-6">6. Подключение к OBS</a>
+      <a href="#link-step-7">7. Проверка работы</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="content">
+
+    <div class="content-hero">
+      <h1>Настройка виджета <span class="gradient-text">«Донат-гол»</span></h1>
+      <p class="lede">Заполняющаяся шкала цели: донаты приходят в реальном времени через сервис донатов.</p>
+    </div>
+
+    <!-- Выбор способа -->
+    <div class="method-select" id="methodSelect">
+      <h2>Каким образом вы получили виджет?</h2>
+      <p class="method-lede">От этого зависит порядок дальнейшей установки.</p>
+      <div class="method-cards">
+        <button class="method-card" data-method="archive">
+          <span class="method-icon">📦</span>
+          <h3>Архив с кодом</h3>
+          <p>Вам прислали ZIP-архив с файлами Html, Css, Js и Fields — код нужно вставить вручную в редактор StreamElements.</p>
+        </button>
+        <button class="method-card" data-method="link">
+          <span class="method-icon">🔗</span>
+          <h3>Ссылка на установку</h3>
+          <p>Вам прислали прямую ссылку — виджет добавится в оверлей автоматически в один клик, без копирования кода.</p>
+        </button>
+      </div>
+    </div>
+
+    <div class="method-content" id="methodContent" hidden>
+      <button class="method-change" id="methodChange">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Выбрать другой способ
+      </button>
+
+      <button class="toc-toggle" id="tocToggle">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Оглавление шагов
+      </button>
+
+      <div class="flow" data-flow="archive">
+        <section id="step-1" class="step">
+          <div class="step-head">
+            <span class="step-num">1</span>
+            <h2>Создание оверлея</h2>
+          </div>
+          Откройте <code>streamelements.com/dashboard/overlays</code> и нажмите «New overlay» — откроется редактор виджетов.
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-2" class="step">
+          <div class="step-head">
+            <span class="step-num">2</span>
+            <h2>Custom Widget</h2>
+          </div>
+          Нажмите «Add widget» → «Static/Custom» → «Custom widget» и задайте виджету понятное название, например «Донат-гол».
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-3" class="step">
+          <div class="step-head">
+            <span class="step-num">3</span>
+            <h2>Редактор кода</h2>
+          </div>
+          Нажмите «OPEN EDITOR» на панели виджета — появится окно с вкладками <code>HTML</code>, <code>CSS</code>, <code>JS</code>, <code>Fields</code>.
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-4" class="step">
+          <div class="step-head">
+            <span class="step-num">4</span>
+            <h2>Вставка кода</h2>
+          </div>
+          <p>Удалите код-заглушку и вставьте содержимое соответствующего файла из архива в каждую вкладку: <code>Html</code>, <code>Css</code>, <code>Js</code> и <code>Fields</code>.</p><p>Когда весь код перенесён, нажмите «DONE».</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-5" class="step">
+          <div class="step-head">
+            <span class="step-num">5</span>
+            <h2>Подключение сервиса</h2>
+          </div>
+          <p>Виджет получает донаты через наш сервис, а не напрямую из DonationAlerts. Один раз подключите аккаунт по <a href="service.html">инструкции «Сервис донатов»</a> и скопируйте токен. Затем в настройках виджета найдите поле <code>Токен сервиса</code> и вставьте его без пробелов.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+          <div class="tip-box"><strong>Важно:</strong> без токена виджет не получает донаты. Один и тот же токен подходит для всех ваших виджетов.</div>
+        </section>
+
+        <section id="step-6" class="step">
+          <div class="step-head">
+            <span class="step-num">6</span>
+            <h2>Параметры цели</h2>
+          </div>
+          <p>В настройках виджета заполните поля группы «Настройки Donate Goal»:</p><ul><li><code>Текст цели</code> — заголовок над шкалой</li><li><code>Начать сбор с</code> — стартовая сумма</li><li><code>Сколько нужно собрать</code> — размер цели</li></ul><p>После изменения суммы нажмите «Обновить Donate Goal», чтобы шкала применила новые значения.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-7" class="step">
+          <div class="step-head">
+            <span class="step-num">7</span>
+            <h2>Размер и позиция</h2>
+          </div>
+          <p>В разделе «Position, size and style» подберите ширину и высоту виджета под ваш макет, затем нажмите «SAVE» в правом верхнем углу редактора.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-8" class="step">
+          <div class="step-head">
+            <span class="step-num">8</span>
+            <h2>Подключение к OBS</h2>
+          </div>
+          <p>Скопируйте ссылку виджета по иконке скрепки. В OBS создайте источник «Browser», вставьте ссылку и укажите разрешение оверлея, например <code>1920×1080</code>.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="step-9" class="step">
+          <div class="step-head">
+            <span class="step-num">9</span>
+            <h2>Проверка работы</h2>
+          </div>
+          <p>Проверьте виджет двумя способами:</p><ul><li>в настройках виджета укажите сумму в поле «Сумма доната для теста» и нажмите «Тестовый донат» — так проверяется внешний вид;</li><li>в личном кабинете сервиса нажмите «Отправить тестовый донат» — так проверяется связь с сервисом (в виджете включите галочку «Учитывать тестовые донаты из кабинета сервиса»).</li></ul>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+          <div class="tip-box"><strong>Совет:</strong> после проверки выключите галочку про тестовые донаты и нажмите «Обновить Donate Goal», чтобы сбросить прогресс перед стримом.</div>
+        </section>
+
+      </div>
+
+      <div class="flow" data-flow="link" hidden>
+        <section id="link-step-1" class="step">
+          <div class="step-head">
+            <span class="step-num">1</span>
+            <h2>Откройте ссылку</h2>
+          </div>
+          <p>Перейдите по присланной ссылке, будучи авторизованным на <code>streamelements.com</code> под аккаунтом канала, куда хотите установить виджет.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="link-step-2" class="step">
+          <div class="step-head">
+            <span class="step-num">2</span>
+            <h2>Подтвердите установку</h2>
+          </div>
+          <p>Нажмите «Install»</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+          <div class="tip-box"><strong>Готово:</strong> весь код (Html/Css/Js/Fields) установлен автоматически — переносить его вручную не нужно.</div>
+        </section>
+
+        <section id="link-step-3" class="step">
+          <div class="step-head">
+            <span class="step-num">3</span>
+            <h2>Подключение сервиса</h2>
+          </div>
+          <p>Виджет получает донаты через наш сервис, а не напрямую из DonationAlerts. Один раз подключите аккаунт по <a class = 'link' href="service.html">инструкции «Сервис донатов»</a> и скопируйте токен. Затем в настройках виджета найдите поле <code>Токен сервиса</code> и вставьте его без пробелов.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+          <div class="tip-box"><strong>Важно:</strong> без токена виджет не получает донаты. Один и тот же токен подходит для всех ваших виджетов.</div>
+        </section>
+
+        <section id="link-step-4" class="step">
+          <div class="step-head">
+            <span class="step-num">4</span>
+            <h2>Параметры цели</h2>
+          </div>
+          <p>В настройках виджета заполните поля группы «Настройки Donate Goal»:</p><ul><li><code>Текст цели</code> — заголовок над шкалой</li><li><code>Начать сбор с</code> — стартовая сумма</li><li><code>Сколько нужно собрать</code> — размер цели</li></ul><p>После изменения суммы нажмите «Обновить Donate Goal», чтобы шкала применила новые значения.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="link-step-5" class="step">
+          <div class="step-head">
+            <span class="step-num">5</span>
+            <h2>Размер и позиция</h2>
+          </div>
+          <p>В разделе «Position, size and style» подберите ширину и высоту виджета под ваш макет, затем нажмите «SAVE» в правом верхнем углу редактора.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="link-step-6" class="step">
+          <div class="step-head">
+            <span class="step-num">6</span>
+            <h2>Подключение к OBS</h2>
+          </div>
+          <p>Скопируйте ссылку виджета по иконке скрепки. В OBS создайте источник «Browser», вставьте ссылку и укажите разрешение оверлея, например <code>1920×1080</code>.</p>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+        </section>
+
+        <section id="link-step-7" class="step">
+          <div class="step-head">
+            <span class="step-num">7</span>
+            <h2>Проверка работы</h2>
+          </div>
+          <p>Проверьте виджет двумя способами:</p><ul><li>в настройках виджета укажите сумму в поле «Сумма доната для теста» и нажмите «Тестовый донат» — так проверяется внешний вид;</li><li>в личном кабинете сервиса нажмите «Отправить тестовый донат» — так проверяется связь с сервисом (в виджете включите галочку «Учитывать тестовые донаты из кабинета сервиса»).</li></ul>
+          <div class="media-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <span>Скриншот появится здесь</span>
+        </div>
+          <div class="tip-box"><strong>Совет:</strong> после проверки выключите галочку про тестовые донаты и нажмите «Обновить Donate Goal», чтобы сбросить прогресс перед стримом.</div>
+        </section>
+
+      </div>
+
+      <div class="page-footer-nav">
+      <a href="chat.html">Инструкция «Чат»
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>Widget Instruction</span>
+    <span>Инструкции обновляются по мере готовности виджетов</span>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

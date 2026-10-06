@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чат — Widget Instruction</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="chat">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Widget Instruction</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="donation-goal.html">Донат-гол</a>
+      <a href="follow-goal.html">Фоллоу-гол</a>
+      <a href="sub-goal.html">Саб-гол</a>
+      <a href="chat.html" class="active">Чат</a>
+      <a href="service.html">Сервис донатов</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Переключить тему">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Меню">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Закрыть оглавление">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <p class="sidebar-title">Содержание</p>
+    <nav class="toc">
+      <a href="#step-1">1. Создание оверлея</a>
+      <a href="#step-2">2. Custom Widget</a>
+      <a href="#step-3">3. Редактор кода</a>
+      <a href="#step-4">4. Вставка кода</a>
+      <a href="#step-5">5. Размер и позиция</a>
+      <a href="#step-6">6. Подключение к OBS</a>
+      <a href="#step-7">7. Проверка работы</a>
+      <a href="#step-8">8. Настройка видимости</a>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="content">
+
+    <div class="content-hero">
+      <h1>Настройка виджета <span class="gradient-text">«Чат»</span></h1>
+      <p class="lede">Стилизованное окно чата с ролями зрителей, анимацией появления сообщений и поддержкой эмодзи.</p>
+    </div>
+
+    <!-- Выбор способа -->
+    <div class="method-select" id="methodSelect">
+      <h2>Каким образом вы получили виджет?</h2>
+      <p class="method-lede">От этого зависит порядок дальнейшей установки.</p>
+      <div class="method-cards">
+        <button class="method-card" data-method="archive">
+          <span class="method-icon">📦</span>
+          <h3>Архив с кодом</h3>
+          <p>Вам прислали ZIP-архив с файлами Html, Css, Js и Fields — код нужно вставить вручную в редактор StreamElements.</p>
+        </button>
+        <button class="method-card" data-method="link">
+          <span class="method-icon">🔗</span>
+          <h3>Ссылка на установку</h3>
+          <p>Вам прислали прямую ссылку — виджет добавится в оверлей автоматически в один клик, без копирования кода.</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Контент по выбранному способу -->
+    <div class="method-content" id="methodContent" hidden>
+      <button class="method-change" id="methodChange">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Выбрать другой способ
+      </button>
+
+      <button class="toc-toggle" id="tocToggle">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Оглавление шагов
+      </button>
+
+      <!-- ===== Способ 1: архив с кодом ===== -->
+      <div class="flow" data-flow="archive">
+
+        <section id="step-1" class="step">
+          <div class="step-head">
+            <span class="step-num">1</span>
+            <h2>Создайте новый оверлей</h2>
+          </div>
+          <p>Откройте <code>streamelements.com/dashboard/overlays</code> и нажмите кнопку «New overlay» — вы попадёте на страницу редактора виджетов.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="step-2" class="step">
+          <div class="step-head">
+            <span class="step-num">2</span>
+            <h2>Добавьте Custom Widget</h2>
+          </div>
+          <p>В редакторе нажмите «Add widget» → раздел «Static/Custom» → «Custom widget». Задайте виджету понятное имя, чтобы не потерять его среди других.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="step-3" class="step">
+          <div class="step-head">
+            <span class="step-num">3</span>
+            <h2>Откройте редактор кода</h2>
+          </div>
+          <p>На панели виджета нажмите «OPEN EDITOR» — откроется окно с вкладками <code>HTML</code>, <code>CSS</code>, <code>JS</code>, <code>Fields</code>, куда нужно вставить код виджета.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="step-4" class="step">
+          <div class="step-head">
+            <span class="step-num">4</span>
+            <h2>Вставьте код по вкладкам</h2>
+          </div>
+          <p>Удалите код-заглушку на каждой вкладке и вставьте содержимое соответствующего файла из архива виджета: <code>Html</code>, <code>Css</code>, <code>Js</code> и <code>Fields</code>.</p>
+          <p>После того как весь код перенесён, нажмите «DONE» в правом нижнем углу окна редактора.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="step-5" class="step">
+          <div class="step-head">
+            <span class="step-num">5</span>
+            <h2>Задайте размер и позицию</h2>
+          </div>
+          <p>В разделе «Position, size and style» укажите ширину и высоту виджета. Рекомендуем оставить ширину <code>1920px</code> и подбирать только высоту — чем она меньше, тем меньше сообщений помещается на экране.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+          <div class="tip-box"><strong>Совет:</strong> когда размер вас устроит, не забудьте нажать «SAVE» в правом верхнем углу редактора.</div>
+        </section>
+
+        <section id="step-6" class="step">
+          <div class="step-head">
+            <span class="step-num">6</span>
+            <h2>Подключите к OBS Studio</h2>
+          </div>
+          <p>Скопируйте ссылку виджета по иконке скрепки в правом верхнем углу редактора. В OBS создайте новый источник «Browser», вставьте ссылку и укажите разрешение <code>1920×1080</code>.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="step-7" class="step">
+          <div class="step-head">
+            <span class="step-num">7</span>
+            <h2>Проверьте работу</h2>
+          </div>
+          <p>Откройте вкладку «Test messages» в StreamElements и отправьте несколько тестовых сообщений разных ролей — стример, модератор, VIP, сабскрайбер, — чтобы увидеть, как виджет выглядит в OBS.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="step-8" class="step">
+          <div class="step-head">
+            <span class="step-num">8</span>
+            <h2>Настройте видимость сообщений</h2>
+          </div>
+          <p>Во вкладке «Message settings» задайте список игнорируемых пользователей (например, ботов) в поле «Ignored users» — их сообщения не будут появляться в чате.</p>
+          <div class="tip-box"><strong>Совет:</strong> список указывается через запятую, например: <code>Streamelements Bot, Nightbot</code>.</div>
+        </section>
+
+      </div>
+
+      <!-- ===== Способ 2: ссылка на установку ===== -->
+      <div class="flow" data-flow="link" hidden>
+
+        <section id="link-step-1" class="step">
+          <div class="step-head">
+            <span class="step-num">1</span>
+            <h2>Откройте ссылку в браузере</h2>
+          </div>
+          <p>Перейдите по присланной вам ссылке, будучи авторизованным на <code>streamelements.com</code> под аккаунтом канала, куда хотите установить виджет.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="link-step-2" class="step">
+          <div class="step-head">
+            <span class="step-num">2</span>
+            <h2>Выберите оверлей и подтвердите установку</h2>
+          </div>
+          <p>StreamElements предложит выбрать, в какой оверлей добавить виджет (или создать новый), и покажет краткое превью. Нажмите «Install» / «Add to overlay».</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+          <div class="tip-box"><strong>Готово:</strong> весь код (Html/Css/Js/Fields) уже установлен автоматически — переносить его вручную не нужно.</div>
+        </section>
+
+        <section id="link-step-3" class="step">
+          <div class="step-head">
+            <span class="step-num">3</span>
+            <h2>Задайте размер и позицию</h2>
+          </div>
+          <p>Откройте виджет в оверлее и в разделе «Position, size and style» укажите ширину и высоту. Рекомендуем ширину <code>1920px</code> и подбирать только высоту.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="link-step-4" class="step">
+          <div class="step-head">
+            <span class="step-num">4</span>
+            <h2>Подключите к OBS Studio</h2>
+          </div>
+          <p>Скопируйте ссылку виджета по иконке скрепки. В OBS создайте источник «Browser», вставьте ссылку, разрешение <code>1920×1080</code>.</p>
+          <div class="media-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+            <span>Скриншот появится здесь</span>
+          </div>
+        </section>
+
+        <section id="link-step-5" class="step">
+          <div class="step-head">
+            <span class="step-num">5</span>
+            <h2>Проверьте работу и настройте видимость</h2>
+          </div>
+          <p>Отправьте тестовые сообщения во вкладке «Test messages», затем при необходимости заполните список игнорируемых ботов в «Message settings».</p>
+          <div class="tip-box"><strong>Совет:</strong> список игнорируемых указывается через запятую, например: <code>Streamelements Bot, Nightbot</code>.</div>
+        </section>
+
+      </div>
+
+      <div class="page-footer-nav">
+        <a href="donation-goal.html">Инструкция «Донат-гол»
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span>Widget Instruction</span>
+    <span>Инструкции обновляются по мере готовности виджетов</span>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
